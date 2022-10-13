@@ -1,3 +1,5 @@
+USE [Exams]
+
 CREATE TABLE Disciplines (
 	Discipline_Id int,
 	Disc_name varchar(50),

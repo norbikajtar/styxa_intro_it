@@ -1,3 +1,5 @@
+USE [Exams]
+
 CREATE TABLE Groups (
 	Gr_Id int,
 	Gr_name varchar(50),

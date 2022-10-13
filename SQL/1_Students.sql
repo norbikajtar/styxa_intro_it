@@ -1,3 +1,5 @@
+USE [Exams]
+
 CREATE TABLE Students (
 	Stud_Id int,
 	Name varchar(50),

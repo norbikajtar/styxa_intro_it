@@ -1,3 +1,5 @@
+USE [Exams]
+
 ALTER TABLE Students
 	ADD FOREIGN KEY (Group_Id) REFERENCES Groups(Gr_Id);
 

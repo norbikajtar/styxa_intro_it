@@ -1,3 +1,5 @@
+USE [Exams]
+
 CREATE TABLE Marks (
 	Student_Id int,
 	Teacher_Id int,

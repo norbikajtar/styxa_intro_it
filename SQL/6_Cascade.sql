@@ -1,5 +1,7 @@
+USE [Exams]
+
 ALTER TABLE Students
-	DROP CONSTRAINT FK__Students__Group___31EC6D26;
+	DROP CONSTRAINT FK__Students__Group___30F848ED; --check exact name in the DB
 
 ALTER TABLE Students
 	ADD FOREIGN KEY (Group_Id) REFERENCES Groups(Gr_Id)
