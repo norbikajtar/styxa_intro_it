@@ -1,3 +1,5 @@
+USE [Exams]
+
 INSERT INTO [Groups] (Gr_Id,Gr_name,Year_of_Study)
 VALUES
   (1,'ultrices a,',1),
