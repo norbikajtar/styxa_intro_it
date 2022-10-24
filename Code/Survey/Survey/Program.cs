@@ -7,49 +7,48 @@ namespace Survey
         static void Main(string[] args)
         {
             Console.WriteLine("What is your name?");
-            var name = Console.ReadLine();
-
-            name = WriteTextIfEmpty(name);
+            var name = TryAnswer();
 
             Console.WriteLine("What is your age?");
-            var age = Console.ReadLine();
-
-            age = WriteTextIfEmpty(age);
+            var age = int.Parse(TryAnswer());
 
             Console.WriteLine("What month were you born in?");
-            var month = Console.ReadLine();
+            var month = TryAnswer();
 
-            month = WriteTextIfEmpty(month);
+            Display(name, age, month);
+        }
 
+        public static void Display(string name, int age, string month)
+        {
             Console.WriteLine("Your name is: {0}", name);
             Console.WriteLine("Your age is: {0}", age);
             Console.WriteLine("Your birth month is: {0}", month);
 
-            if (month == "march")
+            switch (month.ToLower())
             {
-                Console.WriteLine("you are an Aries.");
-            }
-            else if (month == "april")
-            {
-                Console.WriteLine("you are a Taurus.");
-            }
-            else if (month == "may")
-            {
-                Console.WriteLine("you are a Gemini.");
+                case "march":
+                    Console.WriteLine("you are an Aries.");
+                    break;
+                case "april":
+                    Console.WriteLine("you are a Taurus.");
+                    break;
+                case "may":
+                    Console.WriteLine("you are a Gemini.");
+                    break;
             }
         }
 
-        public static string WriteTextIfEmpty(string text)
+        static string TryAnswer()
         {
-            if (text == "")
+            var question = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(question))
             {
-                Console.WriteLine("Please type something already!");
-                return Console.ReadLine();
+                Console.WriteLine("You didn't type anything, please try again:");
+                question = Console.ReadLine();
             }
-            else
-            {
-                return text;
-            }
+
+            return question;
         }
     }
 }
