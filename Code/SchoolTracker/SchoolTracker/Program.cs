@@ -9,11 +9,30 @@ namespace SchoolTracker
         {
             List<Student> diakok = new List<Student>();
 
+            List<IPayee> payees = new List<IPayee>();
+
+            payees.Add(new Teacher() { Name = "Andor" });
+            payees.Add(new Teacher());
+            payees.Add(new Principal());
+
+            var payroll = new Payroll(payees);
+            payroll.PayAll();
+
             var next = true;
+
+            var diak1 = new Student();
+
+            diak1.Count++;
+            Student.count++;
+
+            var diak2 = new Student();
+
+            diak2.Count++;
+            Student.count++;
 
             while (next)
             {
-                Console.WriteLine("Please provide a name:");
+                System.Console.WriteLine("Please provide a name:");
                 var name = Console.ReadLine();
 
                 Console.WriteLine("Please provide a grade:");
@@ -41,31 +60,6 @@ namespace SchoolTracker
                 Console.WriteLine("{0}: {1}", diak.Name, diak.Grade);
             }
         }
-
-        public class Student
-        {
-            public Student(string name, int grade, string phone)
-            {
-                Name = name;
-                Grade = grade;
-                Phone = phone;
-            }
-
-            public void SetPhone(string phone)
-            {
-                Phone = phone;
-            }
-
-            public string GetPhone()
-            {
-                return Phone;
-            }
-
-            public string Name { get; set; }
-            public int Grade { get; set; }
-            private string Phone { get; set; }
-            public DateTime Dateofbirth { get; set; }
-        };
 
     }
 }
