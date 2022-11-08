@@ -1,5 +1,8 @@
 ﻿using CityInfo.API.Models;
+using CityInfo.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -10,6 +13,16 @@ namespace CityInfo.API.Controller
     [Route("api/cities/{cityId}/pointsofinterest")]
     public class PointsOfInterestController : ControllerBase
     {
+        private readonly ILogger<PointsOfInterestController> _logger;
+        private readonly IMailService _mailService;
+
+        public PointsOfInterestController(ILogger<PointsOfInterestController> logger,
+            IMailService mailservice)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _mailService = mailservice ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         [HttpGet]
         public IActionResult GetPointsOfInterest(int cityId)
         {
@@ -17,6 +30,7 @@ namespace CityInfo.API.Controller
 
             if (city == null)
             {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return BadRequest();
             }
 
@@ -30,6 +44,7 @@ namespace CityInfo.API.Controller
 
             if (city == null)
             {
+                _logger.LogInformation($"City with id {cityId} wasn't found when accessing points of interest.");
                 return BadRequest();
             }
 
@@ -41,9 +56,23 @@ namespace CityInfo.API.Controller
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == cityId);
 
+          
+
             if (city == null)
             {
-                return BadRequest();
+                return BadRequest("City is non existent");
+            }
+
+            if (poi.Description == poi.Name)
+            {
+                ModelState.AddModelError(
+                    "Description",
+                    "The provided description should be different from the name.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
 
             var maxPointOfInterestId = CitiesDataStore.Current.Cities.SelectMany(
@@ -104,6 +133,9 @@ namespace CityInfo.API.Controller
             {
                 return BadRequest();
             }
+
+            _mailService.Send("Point of interest deleted.",
+                    $"Point of interest {pointOfInterest.Name} with id {pointOfInterest.Id} was deleted.");
 
             city.PointsOfInterest.Remove(pointOfInterest);
 
