@@ -1,72 +1,86 @@
-﻿using CityInfo.API.Models;
+﻿using AutoMapper;
+using CityInfo.API.Contexts;
+using CityInfo.API.Entities;
+using CityInfo.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 
 namespace CityInfo.API.Controller
 {
-    [ApiController]
-    [Route("api/cities")]
-    public class CitiesController : ControllerBase
+  [ApiController]
+  [Route("api/cities")]
+  public class CitiesController : ControllerBase
+  {
+    private readonly CityInfoContext _ctx;
+    private readonly IMapper _mapper;
+
+    public CitiesController(CityInfoContext ctx, IMapper mapper)
     {
-        [HttpGet]
-        public IActionResult GetCities()
-        {
-            return Ok(CitiesDataStore.Current.Cities);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetCity(int id)
-        {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == id);
-
-            return Ok(city);
-        }
-
-        [HttpPost]
-        public IActionResult CreateCity([FromBody] CityForCreationDto cit)
-        {
-            var maxCitiId = CitiesDataStore.Current.Cities.Max(p => p.Id);
-
-            var CityDto = new CityDto()
-            {
-                Id = maxCitiId + 1,
-                Name = cit.Name,
-                Description = cit.Description,
-            };
-            CitiesDataStore.Current.Cities.Add(CityDto);
-
-            return CreatedAtRoute(
-                "GetCities", new { id = CityDto.Id }, CityDto);
-        }
-        [HttpPut("{id}")]
-        public IActionResult UpdateCity(int cityId, [FromBody] CityForUpdateDto cit)
-        {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == cityId);
-
-            if (city == null)
-            {
-                return BadRequest();
-            }
-            city.Name = cit.Name;
-            city.Description = cit.Description;
-
-            return NoContent();
-        }
-        [HttpDelete("{id}")]
-        public IActionResult DeleteCity(int cityId)
-        {
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(x => x.Id == cityId);
-
-            if (city == null)
-            {
-                return BadRequest();
-            }
-
-            CitiesDataStore.Current.Cities.Remove(city);
-
-            return NoContent();
-        }
+      _ctx = ctx ?? throw new ArgumentNullException(nameof(ctx));
+      _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
+
+    [HttpGet]
+    public IActionResult GetCities()
+    {
+      return Ok(_mapper.Map<IEnumerable<CityDto>>(_ctx.Cities));
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetCity(int id)
+    {
+      var city = _mapper.Map<CityDto>(_ctx.Cities.FirstOrDefault(x => x.Id == id));
+
+      return Ok(city);
+    }
+
+    [HttpPost]
+    public IActionResult CreateCity([FromBody] CityForCreationDto cit)
+    {
+
+      var city = _mapper.Map<City>(cit);
+
+      _ctx.Cities.Add(city);
+
+      _ctx.SaveChanges();
+
+      return CreatedAtRoute(
+          "GetCities", new { id = city.Id }, city);
+    }
+    [HttpPut("{cityId}")]
+    public IActionResult UpdateCity(int cityId, [FromBody] CityForUpdateDto cit)
+    {
+      var city = _ctx.Cities.FirstOrDefault(x => x.Id == cityId);
+
+      if (city == null)
+      {
+        return BadRequest();
+      }
+
+      _mapper.Map(cit, city);
+
+      _ctx.SaveChanges();
+
+      return NoContent();
+    }
+    [HttpDelete("{cityId}")]
+    public IActionResult DeleteCity(int cityId)
+    {
+      var city = _ctx.Cities.FirstOrDefault(x => x.Id == cityId);
+
+      if (city == null)
+      {
+        return BadRequest();
+      }
+
+      _ctx.Remove(city);
+
+      _ctx.SaveChanges();
+
+      return NoContent();
+    }
+  }
 }
