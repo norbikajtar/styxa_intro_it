@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .container {
+            width: 300px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .save {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+
+        function save(form) {
+            console.log("Keresztnev: ", form.fname.value)
+
+            //Checkbox vagy Radio button
+
+            console.log("HTML:", form.html.checked)
+
+            console.log("Bicikli:" ,form.bike.checked)
+
+            //Only in Vanilla JS (To do not navigate)
+            return false;
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Explain action - to do not navigate away -->
+        <form action="#" onsubmit=" save(this)">
+
+            <div class="field">
+                <label for="fname">Keresztnév:</label>
+                <input type="text" id="fname" name="fname" required>
+            </div>
+
+            <div class="field">
+                <label for="lname">Vezetéknév:</label>
+                <input type="text" id="lname" name="lname" required>
+            </div>
+
+            <div class="field">
+                <label for="age">Kor:</label>
+                <input type="number" id="age" name="age" min="1">
+            </div>
+
+            <div class="field">
+                <label for="tel">Tel:</label>
+                <input type="text" id="tel" name="tel">
+            </div>
+
+            <div class="field">
+                <label for="date">Születési dátum:</label>
+                <input type="date" id="date" name="date">
+            </div>
+
+            <div>
+                <p>Válasszd ki kedvenced:</p>
+                <input type="radio" id="html" name="fav_language" value="HTML">
+                <label for="html">HTML</label><br>
+                <input type="radio" id="css" name="fav_language" value="CSS">
+                <label for="css">CSS</label><br>
+                <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                <label for="javascript">JavaScript</label>
+            </div>
+
+            <div>
+                <p>Válasszd ki hobbiad:</p>
+                <!-- A Checkbox-ok segítségével a felhasználó 0 vagy tobb lehetőséget választhat ki -->
+                <input type="checkbox" id="bike" name="bike" value="Bike">
+                <label for="bike"> Biciklizes</label><br>
+                <input type="checkbox" id="code" name="code" value="code">
+                <label for="code">Programozas</label><br>
+                <input type="checkbox" id="reading" name="reading" value="reading">
+                <label for="reading"> Olvasas</label>
+            </div>
+
+            <div>
+                <p>Válassz egy kisállatot:</p>
+
+                <select name="pets" id="pet-select">
+                    <option value="">-- Kérem válasszon egy lehetőséget --</option>
+                    <option value="kutya">Kutya</option>
+                    <option value="macsk">Macska</option>
+                    <option value="hörcsög">Hörcsög</option>
+                    <option value="papagáj">Papagáj</option>
+                </select>
+            </div>
+
+            <button class="save">
+                Mentés
+            </button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

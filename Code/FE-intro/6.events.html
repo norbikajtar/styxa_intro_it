@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body onload="pageLoads()">
+
+    <button onclick="gombClick()">
+        GOMB
+    </button>
+
+    <input type="text" id="demo" onkeydown="keydownFunction()" onkeyup="keyupFunction()">
+
+    <script>
+        function pageLoads() {
+            console.log("betoltott az oldal")
+        }
+
+        function gombClick() {
+            console.log("gomb clickelve")
+        }
+
+
+        keydownFunction = () => {
+            document.getElementById("demo").style.backgroundColor = "red";
+        }
+
+        keyupFunction = () => {
+            document.getElementById("demo").style.backgroundColor = "green";
+        }
+
+    </script>
+</body>
+
+</html>
