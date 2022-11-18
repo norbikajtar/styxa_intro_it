@@ -1,0 +1,53 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Closures
+
+        //Ex 1
+        function init() {
+            let myName = 'Andor';
+
+            function displayName() { // displayName() is the inner function, a closure
+                console.log(myName); // use variable declared in the parent function
+            }
+            displayName();
+        }
+        init();
+
+
+        //    Ex 2 
+
+        function init2() {
+            function displayName() {
+                let myName = 'Andor';
+                console.log(myName);
+            }
+            displayName();
+            console.log(myName);
+        }
+
+        init2();
+
+
+        //EX 3 - Interesting one
+
+        function makeFunc() {
+            var myName = 'Andor2';
+            function displayName() {
+                console.log(myName);
+            }
+            return displayName;
+        }
+
+        var myFunc = makeFunc();
+        myFunc();
+
+
+    </script>
+</body>
+
+</html>

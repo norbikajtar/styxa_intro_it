@@ -1,0 +1,44 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        // Nested Scope
+        function outerFunction() {
+            const outer = 'outer function'
+
+            function innerFunction() {
+                const inner = 'inner function'
+                console.log(outer)
+            }
+
+            innerFunction();
+            console.log(inner)
+        }
+
+        // outerFunction()
+
+
+        //Part 2
+
+
+        // // Functions do not have access to each other’s scopes
+        function first() {
+            const firstFunctionVariable = `I'm part of first`
+        }
+
+        function second() {
+            first()
+            console.log(firstFunctionVariable)
+        }
+
+        second()
+
+
+
+    </script>
+</body>
+
+</html>

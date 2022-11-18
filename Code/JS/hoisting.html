@@ -1,0 +1,49 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Hoisting
+
+        //Ex 1
+        //  Declared with function declaration
+        function printMyDogName(name) {
+            console.log("My dog is " + name);
+        }
+
+         printMyDogName("Cookie");
+
+        // NOTE THAT EX 1 and EX 2 result the same thing - both of them works
+
+        // Ex 2
+        printMyCatName("Chloe");
+
+        function printMyCatName(name) {
+            console.log("My cat's name is " + name);
+
+        }
+
+
+        //Ex 3 - Declaration and Initializations
+
+        var x = 5;
+        console.log(x); // Works
+
+        console.log(y); // ???
+        var y = 10;
+
+
+        //Ex 4 - Declared with function expression
+
+        sayHello() // Error, sayHello is not defined
+        var sayHello = function () {
+            console.log('hello')
+        }
+
+
+    </script>
+</body>
+
+</html>

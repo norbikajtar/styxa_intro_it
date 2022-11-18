@@ -1,0 +1,33 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Callback functions
+
+        //Ex 1
+        function print(value) {
+            console.log(value)
+        }
+
+        function sum(a, b, callback) {
+            let x = a + b;
+            callback(x)
+        }
+
+        function simpleSum(a, b, callback) {
+            let sum;
+            setTimeout(() => {
+                sum = a + b;
+                callback(sum);
+            }, 1000);
+        }
+
+        simpleSum(1, 2, print);
+
+    </script>
+</body>
+
+</html>

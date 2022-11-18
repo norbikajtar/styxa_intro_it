@@ -1,0 +1,43 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Anonymous functions
+
+        //Ex 1
+        let show = function () { // no name between function keyword and ()
+            console.log('Anonymous function');
+        };
+
+        show();
+
+        //Ex 2 
+
+        setTimeout(() => {
+            console.log('Execute later after 1 second')
+        }, 1000);
+
+
+        //Ex 3 - Immediately invoked function execution
+
+        (function () {
+            console.log('I am self invoked');
+        })();
+
+        //Arrow Functions
+
+        //Ex 4 
+        let show2 = () => console.log('Anonymous function');
+
+        // Ex 5
+
+        let add = (a, b) => a + b;
+
+
+    </script>
+</body>
+
+</html>
