@@ -1,0 +1,100 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Ex1: Promise from Callback function1 
+        // Explain return and compare from basic-promise declartion
+        // startOven = (cake) => {
+        //     return new Promise((res, rej) => {
+        //         console.log('Starting cooking ' + cake)
+        //         setTimeout(() => {
+        //             console.log('done');
+        //             res()
+        //         }, 1000)
+        //     })
+
+        // }
+
+        // function whenItsBaked() {
+        //     console.log('Owen opened autmatically')
+        // }
+
+        // startOven('torta').then(whenItsBaked)
+
+
+        //Ex2: Promise Callback functions Ex 2
+
+        // function apicall() {
+        //     return new Promise((res, rej) => {
+        //         const valuesFromDB = [1, 2, 3, 4, 5]
+        //         setTimeout(() => {
+        //             res(valuesFromDB)
+        //         }, 1000)
+        //     })
+
+        // }
+
+        // function print(value) {
+        //     console.log(value)
+        // }
+
+        // apicall().then(resp => {
+        //     print(resp)
+        // })
+
+
+
+        //Ex 3 Convert
+
+        // const weAreCool = true
+        // function areWeCool(callback, erroCallback) {
+        //     if (weAreCool) {
+        //         callback( 'We Rock' )
+        //     } else {
+        //         erroCallback({ message: 'We need to learn' })
+        //     }
+        // }
+
+        // function handleOK(data) {
+        //     console.log(data);
+        // }
+
+        // function handleError(error) {
+        //     console.log(error);
+        //     console.log("Don't give up!")
+        // }
+
+        // areWeCool(handleOK, handleError)
+
+        // Converted
+
+        // const weAreCool = false
+        // function areWeCool() {
+        //     return new Promise((res, rej) => {
+        //         if (weAreCool) {
+        //             res('We Rock')
+        //         } else {
+        //             rej({ message: 'We need to learn' })
+        //         }
+        //     })
+        // }
+        // function handleOK(data) {
+        //     console.log(data);
+        // }
+
+        // function handleError(error) {
+        //     console.log(error);
+        //     console.log("Don't give up!")
+        // }
+
+        // areWeCool()
+        //     .then(message => handleOK(message))
+        //     .catch(error => handleError(error))
+
+    </script>
+</body>
+
+</html>

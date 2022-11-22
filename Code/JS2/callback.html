@@ -1,0 +1,101 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Callback functions Ex 1
+
+        // startOven = (cake, callback) => {
+        //     console.log('Starting cooking ' + cake)
+        //     setTimeout(() => {
+        //         console.log('done');
+        //         callback();
+        //     }, 3000)
+        // }
+
+        // function whenItsBaked() {
+        //     console.log('Owen opened autmatically')
+        // }
+
+        // startOven('torta', whenItsBaked);
+
+
+        // function startOvenPromise(cake) {
+        //     console.log('Starting cooking ' + cake)
+        //     return new Promise(res, rej => {
+        //         setTimeout(() => {
+        //             console.log('done');
+        //             res();
+        //         }, 3000)
+        //     })
+        // }
+
+        // startOvenPromise('torta').then(response => {
+        //     whenItsBaked()
+        // })
+
+
+
+
+        //Callback functions Ex 2
+
+        // function apiCall(callback) {
+        //     const valuesFromDB = [1, 2, 3, 4, 5]
+        //     setTimeout(() => {
+        //         callback(valuesFromDB)
+        //     }, 3000)
+        // }
+
+
+        function print(value) {
+            console.log(value)
+        }
+
+        // function sumAll(array) {
+        //     let total = 0;
+        //     array.forEach(x => {
+        //         total = total +x;
+        //     });
+        //     console.log(total)
+        // }
+
+        // apiCall(sumAll)
+
+
+
+
+
+
+
+        // function printFancy(value) {
+        //     console.log('Fancy')
+        //     console.log(value)
+        // }
+
+        // apiCall(printFancy)
+
+        function apiCallPromise (){
+            return new Promise((res, rej) => {
+                const valuesFromDB = [1, 2, 3, 4, 5]
+                setTimeout(() => {
+                    res(valuesFromDB);
+                }, 3000)
+            })
+
+        }
+
+        apiCallPromise().then(response => {   
+            print(response)
+            console.log(1)
+
+        })
+
+  
+        console.log(2)
+
+    </script>
+</body>
+
+</html>

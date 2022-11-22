@@ -1,0 +1,81 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Promise All ex 1
+
+        // const promise1 = Promise.resolve(3);
+        // const promise2 = 100;
+        // const promise3 = new Promise((resolve, reject) => {
+        //     setTimeout(resolve, 3000, 'Hello');
+        // });
+
+        // Promise.all([promise1, promise2, promise3]).then((values) => {
+        //     console.log(values);
+        // });
+
+
+        // // Ex 2
+        // const promise1 = new Promise((resolve, reject) => {
+        //     setTimeout(resolve, 3000, 'Hello');
+        // });
+        // const promise2 = new Promise((resolve, reject) => {
+        //     setTimeout(resolve, 1000, 'Bello');
+        // });
+
+        // Promise.all([promise1, promise2]).then(([r1, r2]) => {
+        //     console.log(r1);
+        //     console.log(r2);
+        // });
+
+        // // Ex 3 Error 
+
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => resolve('one'), 1000);
+        });
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => resolve('two'), 2000);
+        });
+        const p3 = new Promise((resolve, reject) => {
+            reject(new Error('reject'));
+        });
+
+
+        // // Using .catch:
+        Promise.all([p1, p2, p3])
+            .then(values => {
+                console.log(values);
+            })
+            .catch(error => {
+                console.log(error.message)
+            });
+
+        //Ex 4 Error - still resolved
+
+        // const p1 = new Promise((resolve, reject) => {
+        //     setTimeout(() => resolve('OK'), 1000);
+        // });
+
+        // const p2 = new Promise((resolve, reject) => {
+        //     reject(new Error('error'));
+        // });
+
+        // Promise.all([
+        //     p1.catch(error => { return error }),
+        //     p2.catch(error => { return error }),
+        // ]).then(values => {
+        //     console.log(values[0]) 
+        //     console.log(values[1])
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        // })
+
+    </script>
+
+</body>
+
+</html>

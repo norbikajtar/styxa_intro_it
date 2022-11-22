@@ -1,0 +1,69 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Promise Catching functions Ex 1
+        const bad = false;
+
+        function testing() {
+            return new Promise((res, rej) => {
+                if (bad) {
+                    throw new Error('bad');
+                    //or rej()
+                } else {
+                    res('We are good')
+                }
+            })
+        }
+
+        function handleSuccess(data) {
+            console.log(data)
+        }
+
+        function handleError(error) {
+            console.log(error)
+        }
+
+        testing()
+            .then(
+                d => { handleSuccess(d) },
+                e => { handleError(e) }
+            )
+
+        //Catchin ex 2
+
+        function handleSuccesWithError(data) {
+            //something bad happens on handle
+            throw new Error('code error');
+            console.log(data)
+        }
+
+        testing()
+            .then(
+                d => { handleSuccesWithError(d) },
+                e => { handleError(e) }
+            )
+
+        //Catchin ex 3
+
+        // function handleSuccesWithError(data) {
+        //     //something bad happens on handle
+        //     throw new Error('code error');
+        //     console.log(data)
+        // }
+
+        testing()
+            .then(
+                d => { handleSuccesWithError(d) },
+                e => { handleError(e) }
+            )
+            .catch(handleError)
+
+
+    </script>
+</body>
+
+</html>

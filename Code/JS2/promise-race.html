@@ -1,0 +1,25 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <script>
+        //Promise Race ex 1
+
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 5000, 'one');
+        });
+
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(resolve, 1000, '\\ (•◡•) /');
+        });
+
+        Promise.race([p1, p2]).then((value) => {
+            console.log(value);
+        });
+    </script>
+
+</body>
+
+</html>
