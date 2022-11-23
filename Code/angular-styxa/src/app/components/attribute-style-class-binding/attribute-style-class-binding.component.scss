@@ -1,0 +1,6 @@
+.enabled {
+    background-color: blue;
+    &:hover {
+        cursor: progress
+    }
+}
