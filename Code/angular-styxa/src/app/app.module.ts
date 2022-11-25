@@ -1,3 +1,6 @@
+import { HighlightDirective } from './directives/highlight.directive';
+import { AuthGuard } from './guards/auth.guard';
+import { HeaderCompComponent } from './components/header-comp/header-comp.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,19 +9,30 @@ import { AppComponent } from './app.component';
 import { MyFirstComponent } from './components/my-first/my-first.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { ChildComponent } from './components/child/child.component';
+import { LoginComponent } from './components/login/login.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptor } from './interceptors/request.interceptor';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MyFirstComponent,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
+    HeaderCompComponent,
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

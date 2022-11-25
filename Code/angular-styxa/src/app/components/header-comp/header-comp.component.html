@@ -1,0 +1,9 @@
+<div class="header">
+    <a [routerLink]="['/first']">First</a>
+    <a [routerLink]="['/parent']">Parent</a>
+    <!-- <a [routerLink]="['/Feature']">Feature</a>
+    <a [routerLink]="['/Feature/Detail']">Feature Detail</a>
+    <a *ngIf="userService.user" [routerLink]="['UserDetail', userService.user.id]">User Details Page</a> -->
+
+    <a (click)="logInOrOut()" class="login"> {{userService.user ? 'Log out': "Log in" }}</a>
+</div>

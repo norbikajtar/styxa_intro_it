@@ -35,7 +35,7 @@ namespace CityInfo.API
 
       services.AddDbContext<CityInfoContext>(o =>
       {
-        o.UseSqlServer("Server=(local);Database=CityInfoDB;Trusted_Connection=True;");
+        o.UseSqlServer("Server=(localhost);Database=CityInfoDB;User ID=sa;Password=your_password123;MultipleActiveResultSets=True");
       });
 
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
