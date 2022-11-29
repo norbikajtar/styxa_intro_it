@@ -1,0 +1,18 @@
+<form #form="ngForm" (submit)="form.valid && saveOrUpdate()">
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" [(ngModel)]="model.name" name="name" required>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput type="text" [(ngModel)]="model.description" name="description" required>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <button mat-raised-button color="primary">Save</button>
+    </div>
+</form>

@@ -14,6 +14,9 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'city', loadChildren: () => import('./modules/city/city.module').then(m => m.CityModule)
   }
 
 ];

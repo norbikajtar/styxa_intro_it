@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 export class RequestInterceptor implements HttpInterceptor {
     constructor() { }
 
-    // private readonly baseUrl = "http://localhost:3000";
-    private readonly baseUrl = "https://httpbin.org"
+     private readonly baseUrl = "http://localhost:5001/api";
+    //private readonly baseUrl = "https://httpbin.org"
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (request.url[0] == '/') {
